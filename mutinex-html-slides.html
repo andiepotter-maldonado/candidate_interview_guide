@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutinex Interview Guide — Candidate Manual</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#08081a;color:#fff;line-height:1.6}
+::selection{background:#E91E8C;color:#fff}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+nav .inner{max-width:1100px;margin:0 auto;padding:16px 40px;display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-size:18px;font-weight:800;letter-spacing:3px;color:#E91E8C}
+nav .links{display:flex;gap:28px}
+nav .links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+nav .links a:hover{color:#E91E8C}
+nav .dl-btn{background:#E91E8C;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s}
+nav .dl-btn:hover{opacity:0.85}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a1a 0%,#1a0a2e 50%,#2d0a3e 100%)}
+.hero-content{text-align:center;position:relative;z-index:2}
+.hero .tag{font-size:13px;letter-spacing:5px;color:#E91E8C;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.hero h1{font-size:clamp(48px,8vw,80px);font-weight:900;line-height:1.05;margin-bottom:16px}
+.hero .sub{font-size:clamp(18px,3vw,28px);color:rgba(255,255,255,0.5);font-weight:300}
+.hero .line{width:80px;height:3px;background:linear-gradient(90deg,#E91E8C,transparent);margin:32px auto 0}
+.hero-bg{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,30,140,0.08),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* SECTIONS */
+section{padding:100px 40px;max-width:1100px;margin:0 auto}
+section.full{max-width:100%;padding:100px 0;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+section.full .inner{max-width:1100px;margin:0 auto;padding:0 40px}
+.section-label{font-size:12px;letter-spacing:4px;color:#E91E8C;text-transform:uppercase;font-weight:600;margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;line-height:1.15}
+.section-desc{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.7;max-width:700px;margin-bottom:48px}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stat-card{background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.12);border-radius:16px;padding:32px}
+.stat-card .num{font-size:48px;font-weight:900;color:#E91E8C;margin-bottom:12px}
+.stat-card p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.65}
+
+/* EVP */
+.evp-headline{font-size:clamp(32px,5vw,48px);font-weight:900;line-height:1.1}
+.evp-headline span{color:#E91E8C}
+.evp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 32px}
+.evp-card{background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.15);border-radius:16px;padding:28px;transition:border-color .3s,transform .3s}
+.evp-card:hover{border-color:rgba(233,30,140,0.35);transform:translateY(-2px)}
+.evp-card .icon{font-size:28px;margin-bottom:12px}
+.evp-card h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:8px}
+.evp-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65}
+.quote-bar{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px 24px;display:flex;gap:14px;align-items:flex-start}
+.quote-bar span{font-size:22px}
+.quote-bar p{font-size:14px;color:rgba(255,255,255,0.5);font-style:italic;line-height:1.6}
+
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.value-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px;transition:border-color .3s,transform .3s}
+.value-card:hover{border-color:rgba(233,30,140,0.25);transform:translateY(-2px)}
+.value-card .icon{font-size:32px;margin-bottom:14px}
+.value-card h3{font-size:17px;font-weight:700;color:#E91E8C;margin-bottom:8px}
+.value-card p{font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.65}
+
+/* PLATFORM */
+.platform-stack{display:flex;flex-direction:column;gap:20px}
+.plat-card{border-radius:16px;padding:32px;display:flex;gap:28px;align-items:flex-start;transition:transform .3s}
+.plat-card:hover{transform:translateY(-2px)}
+.plat-card.pink{background:linear-gradient(135deg,rgba(233,30,140,0.08),transparent);border:1px solid rgba(233,30,140,0.18)}
+.plat-card.purple{background:linear-gradient(135deg,rgba(168,85,247,0.08),transparent);border:1px solid rgba(168,85,247,0.18)}
+.plat-card.indigo{background:linear-gradient(135deg,rgba(99,102,241,0.08),transparent);border:1px solid rgba(99,102,241,0.18)}
+.plat-card .name{font-size:22px;font-weight:800;min-width:110px}
+.plat-card .tag{font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2.5px;margin-top:2px}
+.plat-card p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.7}
+
+/* TERMS */
+.terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.term-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;transition:border-color .3s}
+.term-card:hover{border-color:rgba(233,30,140,0.2)}
+.term-card.wide{grid-column:span 2}
+.term-card .head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.term-card .head .n{font-size:22px;font-weight:800;color:#E91E8C}
+.term-card .head h3{font-size:15px;font-weight:700;color:#fff}
+.term-card p{font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.65}
+
+/* PROCESS */
+.process-timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.process-timeline::before{content:'';position:absolute;left:28px;top:32px;bottom:32px;width:2px;background:linear-gradient(to bottom,#E91E8C,rgba(233,30,140,0.1))}
+.proc-step{display:flex;gap:24px;align-items:flex-start;padding:20px 0;position:relative}
+.proc-step .dot{width:56px;height:56px;border-radius:50%;background:rgba(233,30,140,0.1);border:2px solid rgba(233,30,140,0.25);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;position:relative;z-index:2}
+.proc-step .info .num{font-size:11px;font-weight:700;color:#E91E8C;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.proc-step .info h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
+.proc-step .info p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:600px}
+
+/* TIPS */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tip-card{background:rgba(233,30,140,0.05);border:1px solid rgba(233,30,140,0.1);border-radius:16px;padding:32px}
+.tip-card .num{font-size:36px;font-weight:900;color:#E91E8C;margin-bottom:8px}
+.tip-card h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px}
+.tip-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65}
+
+/* STAR */
+.star-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:48px 0 36px}
+.star-box{background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.18);border-radius:16px;padding:32px;text-align:center}
+.star-box .letter{font-size:56px;font-weight:900;color:#E91E8C;line-height:1}
+.star-box .word{font-size:16px;font-weight:700;color:#fff;margin:10px 0 6px}
+.star-box p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5}
+
+/* AFTER */
+.after-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.after-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px}
+.after-card h3{font-size:19px;font-weight:700;color:#E91E8C;margin-bottom:12px}
+.after-card p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7}
+.next-card{background:rgba(233,30,140,0.05);border:1px solid rgba(233,30,140,0.12);border-radius:16px;padding:32px}
+.next-card h3{font-size:19px;font-weight:700;color:#E91E8C;margin-bottom:12px}
+.next-card p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7}
+
+/* FOOTER */
+footer{text-align:center;padding:80px 40px 60px;border-top:1px solid rgba(255,255,255,0.04)}
+footer h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:12px}
+footer p{font-size:15px;color:rgba(255,255,255,0.4)}
+footer .links{margin-top:24px;display:flex;justify-content:center;gap:16px;font-size:13px;color:rgba(255,255,255,0.3)}
+footer .links a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s}
+footer .links a:hover{color:#E91E8C}
+.copy{text-align:center;padding:20px;font-size:11px;color:rgba(255,255,255,0.2)}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  nav .links{display:none}
+  section{padding:60px 20px}
+  section.full .inner{padding:0 20px}
+  .stats,.values-grid,.evp-grid,.tips-grid,.after-grid,.terms-grid{grid-template-columns:1fr}
+  .star-row{grid-template-columns:1fr 1fr}
+  .plat-card{flex-direction:column;gap:12px}
+  .term-card.wide{grid-column:span 1}
+}
+
+/* PRINT */
+@media print{
+  nav,.dl-btn{display:none!important}
+  body{background:#08081a}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="inner">
+<div class="logo">△ MUTINEX</div>
+<div class="links">
+<a href="#mission">Mission</a>
+<a href="#evp">EVP</a>
+<a href="#values">Values</a>
+<a href="#platform">Platform</a>
+<a href="#terms">Terms</a>
+<a href="#process">Process</a>
+<a href="#tips">Tips</a>
+</div>
+<button class="dl-btn" onclick="window.print()">⬇ Save as PDF</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<div class="tag">Mutinex</div>
+<h1>Interview<br>Guide</h1>
+<p class="sub">Candidate Manual</p>
+<div class="line"></div>
+</div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+<div class="section-label">About Us</div>
+<div class="section-title">Impact & Mission</div>
+<p class="section-desc">Mutinex is an AI-powered growth platform on a mission to <strong style="color:#fff">make every growth decision an informed and effective one</strong>. We're building the leading recommendation engine for growth — helping marketers, media leads, agencies, analytics and finance teams identify and optimise the factors that drive sustainable business growth.</p>
+<div class="stats">
+<div class="stat-card"><div class="num">2017</div><p>Founded by Henry Innis and Matt Farrugia with a shared obsession for modelling growth and solving the problem of 'what decisions actually drove growth'.</p></div>
+<div class="stat-card"><div class="num">100+</div><p>Global brands trust Mutinex. Our measurement technology has processed over $9B in media spend, consistently outperforming legacy approaches.</p></div>
+<div class="stat-card"><div class="num">70+</div><p>Team members across Melbourne, Sydney, and New York — and growing. A community of data scientists, engineers, and growth thinkers.</p></div>
+</div>
+</section>
+
+<!-- EVP -->
+<section class="full" id="evp">
+<div class="inner">
+<div class="section-label">Our EVP</div>
+<div class="evp-headline">Make Your Mark.<br><span>Shape an Industry.</span></div>
+<p class="section-desc" style="margin-top:20px">We're not looking for people who want to watch from the sidelines. Mutinex is built by high-agency individuals who take ownership of outcomes, move with urgency, and want their work to genuinely matter — to the company, to our customers, and to their own careers.</p>
+<div class="evp-grid">
+<div class="evp-card"><div class="icon">🎯</div><h3>Own Your Impact</h3><p>At a 70-person company reshaping a $400B industry, your contributions aren't buried in layers of bureaucracy — they're felt. You'll work directly with customers, leadership, and cross-functional teams where moving the needle has real, visible impact.</p></div>
+<div class="evp-card"><div class="icon">📈</div><h3>Drive Your Own Growth</h3><p>We invest in people who invest in themselves. Rapid company growth means rapid career growth — new roles, expanded scope, and leadership opportunities emerge constantly. Your trajectory here is shaped by what you deliver, not by tenure.</p></div>
+<div class="evp-card"><div class="icon">🔬</div><h3>Work on Hard Problems</h3><p>We're replacing billions of dollars in legacy consulting with AI-powered software. You'll be surrounded by brilliant data scientists, engineers, and commercial thinkers tackling problems that don't have playbooks yet — and building the category as you go.</p></div>
+<div class="evp-card"><div class="icon">🌏</div><h3>Global Scale, Startup Energy</h3><p>With offices in Melbourne, Sydney, and New York and customers across APAC, US and EMEA, you'll have global exposure while still operating with the speed, scrappiness, and customer obsession of a startup. The best of both worlds.</p></div>
+</div>
+<div class="quote-bar"><span>💬</span><p>"In startups, moving the needle has real impact. You're hungry, scrappy, customer-obsessed." — Henry Innis, CEO & Co-Founder</p></div>
+</div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+<div class="section-label">Culture</div>
+<div class="section-title">Our Values</div>
+<p class="section-desc">We are a value-driven business. Here is what we live by every day.</p>
+<div class="values-grid">
+<div class="value-card"><div class="icon">👑</div><h3>Act Like a Leader</h3><p>No matter your role or title, you lead by example. We take ownership, inspire those around us, and make decisions with integrity. Come with a solution, not a problem.</p></div>
+<div class="value-card"><div class="icon">🚀</div><h3>Think Big, Act Fast</h3><p>We're here to change the game, not just play it. We dream big, challenge limits and move with urgency. Speed matters, but vision wins.</p></div>
+<div class="value-card"><div class="icon">🔍</div><h3>Purposeful Transparency</h3><p>No smoke, no mirrors. We share openly, communicate clearly, and build trust through honesty. Transparency isn't just good culture — it's good business.</p></div>
+<div class="value-card"><div class="icon">📈</div><h3>Obsess Over Customer Growth</h3><p>When our customers grow, we grow. We put their success at the heart of everything we do — measuring what matters and delivering results that make a difference.</p></div>
+<div class="value-card"><div class="icon">🤖</div><h3>Learn Like a Machine</h3><p>We never stop iterating, adapting, or evolving. Just like the product we build, we're always finding a way to improve. We fail fast, learn faster, and stay curious.</p></div>
+<div class="value-card"><div class="icon">🔢</div><h3>Speak Numerically</h3><p>Gut feelings are great but data is better. Numbers are our native language. We use them to guide decisions, work towards goals and stay grounded in reality (and ROI).</p></div>
+</div>
+</section>
+
+<!-- PLATFORM -->
+<section class="full" id="platform">
+<div class="inner">
+<div class="section-label">Product</div>
+<div class="section-title">Our Platform</div>
+<p class="section-desc">Mutinex's product ecosystem is built around three interconnected pillars.</p>
+<div class="platform-stack">
+<div class="plat-card pink"><div><div class="name" style="color:#E91E8C">Theseus AI</div><div class="tag">The Brain</div></div><p>The generalised growth AI that understands, interprets and quantifies every marketing decision. Unlike legacy consultancy-driven models, Theseus learns from every customer and data refresh — getting faster, smarter, and more granular at scale.</p></div>
+<div class="plat-card purple"><div><div class="name" style="color:#a855f7">GrowthOS</div><div class="tag">The Platform</div></div><p>The growth platform where analytics, finance and marketing end users can consume insights, use data and plan their next best decision — all powered by Theseus. Think of it as the 'Bloomberg terminal for growth'. Includes MAITE, an AI co-pilot for querying insights in natural language.</p></div>
+<div class="plat-card indigo"><div><div class="name" style="color:#6366f1">DataOS</div><div class="tag">The Foundation</div></div><p>The leading platform for marketers to connect, manage and activate all of their unstructured business data. A drag-and-drop, one-stop-shop for cleaning and managing data — making enterprise data ingestion painless.</p></div>
+</div>
+</div>
+</section>
+
+<!-- TERMS -->
+<section id="terms">
+<div class="section-label">Glossary</div>
+<div class="section-title">Top 5 Industry Terms to Know</div>
+<p class="section-desc">To help you feel prepared, here are key terms you'll hear in conversations at Mutinex.</p>
+<div class="terms-grid">
+<div class="term-card"><div class="head"><span class="n">1.</span><h3>MMM (Marketing Mix Modelling)</h3></div><p>A statistical method used to measure the impact of various marketing inputs (TV, digital, OOH, etc.) on sales or other business outcomes. Mutinex is reinventing how MMM is delivered — as always-on SaaS instead of static consulting projects.</p></div>
+<div class="term-card"><div class="head"><span class="n">2.</span><h3>MROI (Marketing Return on Investment)</h3></div><p>The key metric that quantifies the revenue generated for every dollar spent on marketing. GrowthOS helps teams orient conversations around MROI to identify growth opportunities.</p></div>
+<div class="term-card"><div class="head"><span class="n">3.</span><h3>Adstock</h3></div><p>The prolonged effect of advertising on consumer behaviour after exposure. GrowthOS uses adstock analysis to help optimise campaign flighting and timing for maximum effectiveness.</p></div>
+<div class="term-card"><div class="head"><span class="n">4.</span><h3>Incrementality</h3></div><p>Measuring whether a marketing activity drove additional business outcomes that wouldn't have happened otherwise. This is the gold standard for understanding true marketing impact.</p></div>
+<div class="term-card wide"><div class="head"><span class="n">5.</span><h3>Foundation Model</h3></div><p>An AI model trained on broad data that can be adapted for specific tasks. Mutinex's Theseus AI is a generalised growth foundation model that learns across all customers to deliver better, faster insights.</p></div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="full" id="process">
+<div class="inner">
+<div class="section-label">Hiring</div>
+<div class="section-title">Interview Process</div>
+<p class="section-desc">Our process is designed to assess your skills, understand how you think, and give you plenty of chances to get to know us. The exact format may vary by role.</p>
+<div class="process-timeline">
+<div class="proc-step"><div class="dot">📞</div><div class="info"><div class="num">Step 01</div><h3>Talent Screening</h3><p>An initial call with our Talent team to discuss the role, your background, motivations, and logistics like timeline, work authorisation, and compensation expectations.</p></div></div>
+<div class="proc-step"><div class="dot">💬</div><div class="info"><div class="num">Step 02</div><h3>Hiring Manager Interview</h3><p>A deeper conversation about your experience and skills. Have examples of recent projects and achievements top of mind. Share the context of the problem, drivers for solving it, steps you took, and the solution you provided.</p></div></div>
+<div class="proc-step"><div class="dot">🧩</div><div class="info"><div class="num">Step 03</div><h3>Skills Assessment</h3><p>Your chance to showcase how you approach real-world challenges. This could be a take-home assignment, case study, or live working session depending on the role. We want to understand your thought process and problem-solving approach.</p></div></div>
+<div class="proc-step"><div class="dot">🤝</div><div class="info"><div class="num">Step 04</div><h3>Team / Cross-Functional Interviews</h3><p>Meet people from the team or departments you'd collaborate with. These conversations focus on team fit, working style, and how you'd contribute to our culture and mission.</p></div></div>
+<div class="proc-step"><div class="dot">🎯</div><div class="info"><div class="num">Step 05</div><h3>Final Interview</h3><p>A conversation with senior leadership exploring your vision for the role, how you approach big-picture problems, and your perspective on industry trends.</p></div></div>
+</div>
+<p style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:24px;font-style:italic">Note: Process and timing will vary depending on the specific role and department.</p>
+</div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+<div class="section-label">Preparation</div>
+<div class="section-title">Before Your Interview</div>
+<p class="section-desc">Get ready!</p>
+<div class="tips-grid">
+<div class="tip-card"><div class="num">1</div><h3>Learn About Us</h3><p>Take the time to get to know Mutinex. Explore our website, read customer stories, check out our blog and LinkedIn. Understanding our mission and product will help you feel confident and show us you're excited about the opportunity.</p></div>
+<div class="tip-card"><div class="num">2</div><h3>Prep Your Stories</h3><p>Think of examples that highlight your skills and achievements. Whether it's a time you led a project, solved a tricky problem, or handled a tough situation — come prepared to walk us through those moments.</p></div>
+<div class="tip-card"><div class="num">3</div><h3>Tech Check</h3><p>Since interviews are conducted virtually, do a test run to ensure your camera, microphone, and internet connection work smoothly. Choose a quiet, well-lit space where you won't be interrupted.</p></div>
+<div class="tip-card"><div class="num">4</div><h3>Take a Breath</h3><p>It's completely normal to feel some nerves. Take a deep breath, trust yourself, and remember — you've earned the right to be here. If you need a moment to gather your thoughts during the conversation, that's completely fine.</p></div>
+</div>
+</section>
+
+<!-- DURING -->
+<section class="full">
+<div class="inner" style="text-align:center">
+<div class="section-label">Framework</div>
+<div class="section-title" style="margin-left:auto;margin-right:auto">During Your Interview</div>
+<p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center">We don't follow rigid formats, but structuring your answers helps us understand the impact you made. Provide the context of the problem, drivers for solving it, the steps you took, and the result.</p>
+<div class="star-row">
+<div class="star-box"><div class="letter">S</div><div class="word">Situation</div><p>Describe the context or background of the example.</p></div>
+<div class="star-box"><div class="letter">T</div><div class="word">Task</div><p>Explain the specific problem or responsibility.</p></div>
+<div class="star-box"><div class="letter">A</div><div class="word">Action</div><p>Detail the steps taken to address the situation.</p></div>
+<div class="star-box"><div class="letter">R</div><div class="word">Results</div><p>Highlight the outcome of the actions taken.</p></div>
+</div>
+<p style="font-size:14px;color:rgba(255,255,255,0.5);max-width:520px;margin:0 auto">Remember to <strong style="color:#E91E8C">Speak Numerically</strong> where possible — quantify your impact with data and metrics. It's one of our core values and we love seeing it in action.</p>
+</div>
+</section>
+
+<!-- AFTER -->
+<section>
+<div class="section-label">Wrap Up</div>
+<div class="section-title">After Your Interview</div>
+<p class="section-desc">Reflect & Recap</p>
+<div class="after-grid">
+<div class="after-card"><h3>Key Insights</h3><p>Take a few minutes to jot down key takeaways: what stood out, anything you learned, and how you're feeling about the opportunity. It's a great way to reflect while everything's still fresh. Note any follow-up questions that come to mind.</p></div>
+<div class="after-card"><h3>Our Appreciation</h3><p>We recognise the time, energy, and effort it takes to participate in an interview process. Thank you for sharing your experience and accomplishments with us and giving us the opportunity to get to know you better.</p></div>
+</div>
+<div class="next-card"><h3>Next Steps</h3><p>Once your interviews are complete, the team will come together to consolidate feedback. If you have any questions or if your timeline changes, please don't hesitate to reach out to our Talent team — we're here to help you navigate the next steps.</p></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<h2>Thank You For Your Interest!</h2>
+<p>We're excited to learn more about you.</p>
+<div class="links">
+<a href="https://mutinex.co" target="_blank">mutinex.co</a>
+<span>·</span>
+<a href="https://careers.mutinex.co" target="_blank">careers.mutinex.co</a>
+</div>
+</footer>
+<div class="copy">© 2025 Mutinex</div>
+
+</body>
+</html>
